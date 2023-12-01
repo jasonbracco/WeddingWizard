@@ -1,0 +1,15 @@
+.card-column {
+    float: left;
+    width: 25%;
+    text-align: center;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.column-header {
+    text-align: center;
+}
