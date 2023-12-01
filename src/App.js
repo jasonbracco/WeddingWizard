@@ -8,19 +8,40 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <NavBar />
-        <CreateNewCard />
-        <br></br>
-        <div className="time-cost-widgets">
-          <div className="total-price">
-            The total price on the board will go here
-          </div>
-          <div className="countdown-clock">
-            The countdown clock will go here
-          </div>
+        <div className="navbar">
+          <NavBar />
         </div>
-        <Board />
-        <br></br>
+
+        <Routes>
+          <Route 
+            path="/createnew"
+            element={
+            <div>
+              <CreateNewCard />
+            </div>}
+          />
+          <Route 
+            path="/"
+            element={
+              <div className="main-page-container">
+                <div className="time-cost-filter-widgets">
+                  <div className="total-price">
+                    The total price on the board will go here
+                  </div>
+                  <div className="countdown-clock">
+                    The countdown clock will go here
+                  </div>
+                  <div className="filter">
+                    Filter Here
+                  </div>
+                </div>
+                <div className="board-container">
+                  <Board />
+                </div>
+              </div>
+            }
+          />
+        </Routes>
       </div>
     </Router>
   );
