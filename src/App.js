@@ -11,7 +11,7 @@ function App() {
         <div className="navbar">
           <NavBar />
         </div>
-
+        <br></br>
         <Routes>
           <Route 
             path="/createnew"
