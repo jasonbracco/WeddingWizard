@@ -1,7 +1,15 @@
 .card-column {
     float: left;
-    width: 25%;
+    width: 24%;
     text-align: center;
+    border-right-style: solid;
+    border-left-style: solid;
+
+}
+
+.row {
+    display: flex;
+    justify-content: center;
 }
 
 .row:after {
