@@ -2,9 +2,12 @@
     float: left;
     width: 24%;
     text-align: center;
-    border-right-style: solid;
     border-left-style: solid;
+    border-right-style: solid;
+}
 
+.card-column-middle, .card-column-last {
+    border-left-style: solid
 }
 
 .row {
@@ -20,4 +23,25 @@
 
 .column-header {
     text-align: center;
+    border-bottom-style: solid
+}
+
+.time-cost-filter-widgets {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.total-price, .countdown-clock, .filter {
+    margin-right: 100px;
+    padding: 15px
+}
+
+.navbar {
+    display: flex;
+    justify-content: left;
+}
+
+.nav-button {
+    padding: 10px;
 }
