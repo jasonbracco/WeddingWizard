@@ -4,11 +4,26 @@
     text-align: center;
     border-left-style: solid;
     border-right-style: solid;
+    height: 700px;
+
 }
 
-.card-column-middle, .card-column-last {
-    border-left-style: solid
+.column-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ensure the content takes full height of the container */
 }
+
+.scroll-column {
+    flex: 1; /* Make the scroll container take up remaining space */
+    overflow-y: auto; /* Enable vertical scrolling for the entire column */
+    height: 610px
+}
+
+.scrollable-content {
+    overflow-y: auto; /* Enable vertical scrolling for the content */
+    padding-bottom: 10px; /* Add some bottom padding to prevent content from being partially hidden under the scrollbar */
+  }
 
 .row {
     display: flex;
@@ -23,8 +38,15 @@
 
 .column-header {
     text-align: center;
+    border-bottom-style: solid;
+    background-color: #f0f0f0; 
     border-bottom-style: solid
 }
+
+.column-price {
+    text-align: center;
+    border-top-style: solid;
+  }
 
 .time-cost-filter-widgets {
     display: flex;
@@ -44,4 +66,18 @@
 
 .nav-button {
     padding: 10px;
+}
+
+.card {
+    border-style: solid;
+    display: inline-block;
+    width: 90%;
+    height: 150px;
+    margin: 2px;
+    transition: border-color 0s ease-in-out; /* Smooth transition for the border color change */
+}
+
+.card:hover {
+    border-color: #11181f; /* Change to the desired highlight color on hover */
+    border-width: 3px
 }
