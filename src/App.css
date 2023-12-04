@@ -81,3 +81,37 @@
     border-color: #11181f; /* Change to the desired highlight color on hover */
     border-width: 3px
 }
+
+.card-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-form {
+    height: 30%;
+    width: 30%;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-form label {
+    display: block; /* Ensure each label is on a new line */
+}
+  
+.card-form input {
+    width: 100%; /* Make input fill the container */
+    padding: 8px;
+}
+  
+.card-form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: border-color 0s ease-in-out; /* Smooth transition for the border color change */
+}
+
+.card-form button:hover {
+    background-color: #f5d1d5;
+}

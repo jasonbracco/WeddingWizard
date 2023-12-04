@@ -6,14 +6,11 @@ import './App.css';
 
 function App() {
 
-
-
   const todaysDate = new Date
   const weddingDate = new Date("May 31, 2025 EST")
   const timeUntilWedding = weddingDate.getTime() - todaysDate.getTime()
   const daysUntilWedding = Math.ceil(timeUntilWedding/(1000 * 60 * 60 * 24))
   
-
   return (
     <Router>
       <div className="App">
@@ -32,7 +29,7 @@ function App() {
           <Route 
             path="/"
             element={
-              <div className="main-page-container">
+              <div className>
                 <div className="time-cost-filter-widgets">
                   <div className="total-price">
                     <strong>The total price on the board will go here</strong>
@@ -44,7 +41,7 @@ function App() {
                     <strong>Filter Here</strong>
                   </div>
                 </div>
-                <div className="board-container">
+                <div>
                   <Board />
                 </div>
               </div>
