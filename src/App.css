@@ -39,8 +39,7 @@
 .column-header {
     text-align: center;
     border-bottom-style: solid;
-    background-color: #f0f0f0; 
-    border-bottom-style: solid
+    border-bottom-style: solid;
 }
 
 .column-price {
@@ -114,4 +113,18 @@
 
 .card-form button:hover {
     background-color: #f5d1d5;
+}
+
+.card-container {
+    display: block;
+}
+
+.card-title {
+    text-align: center
+}
+
+.card-content {
+    float: left;
+    margin: 0;
+    text-align: left
 }
