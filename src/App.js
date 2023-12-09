@@ -6,7 +6,7 @@ import './App.css';
 
 function App() {
 
-  const todaysDate = new Date
+  const todaysDate = new Date()
   const weddingDate = new Date("May 31, 2025 EST")
   const timeUntilWedding = weddingDate.getTime() - todaysDate.getTime()
   const daysUntilWedding = Math.ceil(timeUntilWedding/(1000 * 60 * 60 * 24))

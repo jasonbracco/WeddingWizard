@@ -1,11 +1,29 @@
-import Card from "./Card";
+import { useEffect, useState } from "react";
 import ToDoColumn from "./ToDoColumn";
 import NotStartedColumn from "./NotStartedColumn";
 import InProgressColumn from "./InProgressColumn";
 import DoneColumn from "./DoneColumn";
 
-
 function Board() {
+  const [testCard, setTestCard] = useState({});
+
+  useEffect(() => {
+    fetch("/testcard")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then(data => {
+        setTestCard(data);
+      })
+      .catch(error => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  console.log(testCard);
   return (
     <div>
       <div className="row">
