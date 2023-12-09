@@ -81,6 +81,20 @@
     border-width: 3px
 }
 
+.card-container {
+    display: block;
+}
+
+.card-title {
+    text-align: center
+}
+
+.card-content {
+    float: left;
+    margin: 0;
+    text-align: left
+}
+
 .card-form-container {
     display: flex;
     justify-content: center;
@@ -115,16 +129,4 @@
     background-color: #f5d1d5;
 }
 
-.card-container {
-    display: block;
-}
 
-.card-title {
-    text-align: center
-}
-
-.card-content {
-    float: left;
-    margin: 0;
-    text-align: left
-}
