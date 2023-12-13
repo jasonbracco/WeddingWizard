@@ -6,22 +6,27 @@ function CreateNewCard() {
   const [cost, setCost] = useState("");
   const [dueByDate, setDueByDate] = useState("");
   const [category, setCategory] = useState("hidden");
-  const [paymentStatus, setPaymentStatus] = useState("");
+  const [paymentStatus, setPaymentStatus] = useState("hidden");
   const [owner, setOwner] = useState("hidden");
   const [ownerError, setOwnerError] = useState(false);
+  const [paymentStatusError, setPaymentStatusError] = useState(false)
   const [categoryError, setCategoryError] = useState(false);
+  
 
   const createNewCardSubmit = async (event) => {
     event.preventDefault();
-    console.log(category);
+
+    setOwnerError(false);
+    setPaymentStatusError(false);
+    setCategoryError(false);
 
     if (category === "hidden") {
       setCategoryError(true);
+    } else if (paymentStatus === "hidden") {
+        setPaymentStatusError(true);
     } else if (owner === "hidden") {
       setOwnerError(true);
     } else {
-      setOwnerError(false);
-      setCategoryError(false);
       const newCard = {
         title: cardTitle,
         update: currentUpdate,
@@ -140,14 +145,22 @@ function CreateNewCard() {
         <br></br>
         <label>
           Payment Status:
-          <input
-            required
-            type="text"
-            placeholder="Payment Status"
+          <select
             value={paymentStatus}
             onChange={(e) => setPaymentStatus(e.target.value)}
-          />
+            defaultValue="Select"
+          >
+            <option value="hidden" hidden>
+              Select
+            </option>
+            <option value="none">Unpaid</option>
+            <option value="partial">Partial</option>
+            <option value="full">Fully Paid</option>
+          </select>
         </label>
+        {paymentStatusError ? (
+          <label className="form-error-text">Please Select An Option</label>
+        ) : null}
         <br></br>
         <br></br>
         <label>
