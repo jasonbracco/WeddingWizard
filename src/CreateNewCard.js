@@ -5,6 +5,7 @@ function CreateNewCard() {
   const [currentUpdate, setCurrentUpdate] = useState("");
   const [cost, setCost] = useState("");
   const [dueByDate, setDueByDate] = useState("");
+  const [category, setCategory] = useState("");
   const [paymentStatus, setPaymentStatus] = useState("");
   const [owner, setOwner] = useState("");
 
@@ -16,6 +17,7 @@ function CreateNewCard() {
       update: currentUpdate,
       cost: cost,
       dueDate: dueByDate,
+      category: category,
       paymentStatus: paymentStatus,
       owner: owner,
     };
@@ -89,6 +91,17 @@ function CreateNewCard() {
             placeholder="Due By Date"
             value={dueByDate}
             onChange={(e) => setDueByDate(e.target.value)}
+          />
+        </label>
+        <br></br>
+        <br></br>
+        <label>
+          Category:
+          <input
+            type="text"
+            placeholder="Category"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
           />
         </label>
         <br></br>
