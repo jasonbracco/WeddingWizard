@@ -1,14 +1,17 @@
 const express = require ('express');
 const app = express();
-const { Pool } = require('pg');
+const { Pool } = require('pg')
 
 const port = 3001;
 
 const pool = new Pool({
-    user: 'postgres',
-    host: 'http://localhost:3001',
+    user: 'jasonbracco',
+    host: 'localhost',
     database: 'wedding-wizard',
+    password: 'Jbroc2121!',
+    port: 5433
 })
+
 
 app.get("/testcard", (req, res) => {
     try {
