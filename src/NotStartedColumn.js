@@ -1,11 +1,12 @@
 import Card from "./Card";
 
 function NotStartedColumn() {
+
   return (
     <div className="column-content">
       <div className="scrollable-content">
         <div className="card">
-            <Card />
+            <Card/>
         </div>
         <div className="card">
             <Card />

@@ -1,13 +1,17 @@
-const express = require ('express')
-const app = express()
+const express = require ('express');
+const app = express();
+const { Pool } = require('pg');
 
-const port = 3001
+const port = 3001;
+
+const pool = new Pool({
+    user: 'postgres',
+    host: 'http://localhost:3001',
+    database: 'wedding-wizard',
+})
 
 app.get("/testcard", (req, res) => {
     try {
-        // Simulate an error for testing
-        // throw new Error("Test error");
-
         res.setHeader('Content-Type', 'application/json');
         res.json({
             "Title": "Test Card",

@@ -23,7 +23,6 @@ function Board() {
       });
   }, []);
 
-  console.log(testCard);
   return (
     <div>
       <div className="row">
