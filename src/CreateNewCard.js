@@ -5,46 +5,57 @@ function CreateNewCard() {
   const [currentUpdate, setCurrentUpdate] = useState("");
   const [cost, setCost] = useState("");
   const [dueByDate, setDueByDate] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("hidden");
   const [paymentStatus, setPaymentStatus] = useState("");
-  const [owner, setOwner] = useState(" ");
+  const [owner, setOwner] = useState("hidden");
+  const [ownerError, setOwnerError] = useState(false);
+  const [categoryError, setCategoryError] = useState(false);
 
   const createNewCardSubmit = async (event) => {
     event.preventDefault();
+    console.log(category);
 
-    const newCard = {
-      title: cardTitle,
-      update: currentUpdate,
-      cost: cost,
-      dueDate: dueByDate,
-      category: category,
-      paymentStatus: paymentStatus,
-      owner: owner,
-    };
+    if (category === "hidden") {
+      setCategoryError(true);
+    } else if (owner === "hidden") {
+      setOwnerError(true);
+    } else {
+      setOwnerError(false);
+      setCategoryError(false);
+      const newCard = {
+        title: cardTitle,
+        update: currentUpdate,
+        cost: cost,
+        dueDate: dueByDate,
+        category: category,
+        paymentStatus: paymentStatus,
+        owner: owner,
+      };
 
-    try {
-      const response = await fetch("/createCard", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newCard),
-      });
+      try {
+        const response = await fetch("/createCard", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newCard),
+        });
 
-      if (response.ok) {
-        console.log("Card created!");
-        setCardTitle("");
-        setCurrentUpdate("");
-        setCost("");
-        setDueByDate("");
-        setPaymentStatus("");
-        setOwner("");
-      } else {
-        console.error("Failed to create card:", response.statusText);
+        if (response.ok) {
+          console.log("Card created!");
+          setCardTitle("");
+          setCurrentUpdate("");
+          setCost("");
+          setCategory("");
+          setDueByDate("");
+          setPaymentStatus("");
+          setOwner("");
+        } else {
+          console.error("Failed to create card:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error:", error);
       }
-    } 
-    catch (error) {
-      console.error("Error:", error);
     }
   };
 
@@ -54,6 +65,7 @@ function CreateNewCard() {
         <label>
           Card Title:
           <input
+            required
             type="text"
             placeholder="Title"
             value={cardTitle}
@@ -65,6 +77,7 @@ function CreateNewCard() {
         <label>
           Current Status:
           <input
+            required
             type="text"
             placeholder="Status"
             value={currentUpdate}
@@ -76,6 +89,7 @@ function CreateNewCard() {
         <label>
           Cost:
           <input
+            required
             type="text"
             placeholder="Cost"
             value={cost}
@@ -87,6 +101,7 @@ function CreateNewCard() {
         <label>
           Due By:
           <input
+            required
             type="text"
             placeholder="Due By Date"
             value={dueByDate}
@@ -97,24 +112,36 @@ function CreateNewCard() {
         <br></br>
         <label>
           Category:
-            <select value={category} onChange={(e) => setCategory(e.target.value)} defaultValue="hidden">
-                <option value="hidden" hidden>Select</option>
-                <option value="food-and-drink">Food and Drink</option>
-                <option value="entertainment">Entertainment</option>
-                <option value="rentals">Rentals</option>
-                <option value="paper-goods">Paper Goods</option>
-                <option value="clothing">Clothing</option>
-                <option value="travel-transport">Travel/Transport</option>
-                <option value="photography-videography">Photography/Videography</option>
-                <option value="decorations-florals">Decorations and Florals</option>
-                <option value="add-ons">Add Ons</option>
-            </select>
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            defaultValue="hidden"
+          >
+            <option value="hidden" hidden>
+              Select
+            </option>
+            <option value="food-and-drink">Food and Drink</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="rentals">Rentals</option>
+            <option value="paper-goods">Paper Goods</option>
+            <option value="clothing">Clothing</option>
+            <option value="travel-transport">Travel/Transport</option>
+            <option value="photography-videography">
+              Photography/Videography
+            </option>
+            <option value="decorations-florals">Decorations and Florals</option>
+            <option value="add-ons">Add Ons</option>
+          </select>
         </label>
+        {categoryError ? (
+          <label className="form-error-text">Please Select An Option</label>
+        ) : null}
         <br></br>
         <br></br>
         <label>
           Payment Status:
           <input
+            required
             type="text"
             placeholder="Payment Status"
             value={paymentStatus}
@@ -125,13 +152,22 @@ function CreateNewCard() {
         <br></br>
         <label>
           Owners:
-          <select value={owner} onChange={(e) => setOwner(e.target.value)} defaultValue="Select">
-                <option value="hidden" hidden>Select</option>
-                <option value="planner">Venture North</option>
-                <option value="julia">Julia</option>
-                <option value="jason">Jason</option>
-            </select>
+          <select
+            value={owner}
+            onChange={(e) => setOwner(e.target.value)}
+            defaultValue="Select"
+          >
+            <option value="hidden" hidden>
+              Select
+            </option>
+            <option value="planner">Venture North</option>
+            <option value="julia">Julia</option>
+            <option value="jason">Jason</option>
+          </select>
         </label>
+        {ownerError ? (
+          <label className="form-error-text">Please Select An Option</label>
+        ) : null}
         <br></br>
         <button type="submit">Create Card</button>
       </form>

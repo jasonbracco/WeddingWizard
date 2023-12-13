@@ -122,6 +122,10 @@
     width: 100%; /* Make input fill the container */
     padding: 8px;
 }
+
+.form-error-text {
+    color: red
+}
   
 .card-form button {
     padding: 10px;
