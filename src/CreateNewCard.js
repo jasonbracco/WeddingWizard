@@ -3,7 +3,7 @@ import { useState } from "react";
 function CreateNewCard() {
   const [cardTitle, setCardTitle] = useState("");
   const [currentUpdate, setCurrentUpdate] = useState("");
-  const [cost, setCost] = useState();
+  const [cost, setCost] = useState("");
   const [dueByDate, setDueByDate] = useState("");
   const [paymentStatus, setPaymentStatus] = useState("");
   const [owner, setOwner] = useState("");
@@ -33,7 +33,7 @@ function CreateNewCard() {
         console.log("Card created!");
         setCardTitle("");
         setCurrentUpdate("");
-        setCost();
+        setCost("");
         setDueByDate("");
         setPaymentStatus("");
         setOwner("");
