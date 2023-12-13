@@ -110,9 +110,15 @@
 
 .card-form label {
     display: block; /* Ensure each label is on a new line */
+    padding: 3px;
 }
   
 .card-form input {
+    width: 100%; 
+    padding: 8px;
+}
+
+.card-form select {
     width: 100%; /* Make input fill the container */
     padding: 8px;
 }
