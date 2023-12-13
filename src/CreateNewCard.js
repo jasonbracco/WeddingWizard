@@ -14,7 +14,7 @@ function CreateNewCard() {
     const newCard = {
       title: cardTitle,
       update: currentUpdate,
-      cost: parseFloat(cost),
+      cost: cost,
       dueDate: dueByDate,
       paymentStatus: paymentStatus,
       owner: owner,
