@@ -7,7 +7,7 @@ function CreateNewCard() {
   const [dueByDate, setDueByDate] = useState("");
   const [category, setCategory] = useState("");
   const [paymentStatus, setPaymentStatus] = useState("");
-  const [owner, setOwner] = useState("");
+  const [owner, setOwner] = useState(" ");
 
   const createNewCardSubmit = async (event) => {
     event.preventDefault();
@@ -97,12 +97,18 @@ function CreateNewCard() {
         <br></br>
         <label>
           Category:
-          <input
-            type="text"
-            placeholder="Category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          />
+            <select value={category} onChange={(e) => setCategory(e.target.value)} defaultValue="hidden">
+                <option value="hidden" hidden>Select</option>
+                <option value="food-and-drink">Food and Drink</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="rentals">Rentals</option>
+                <option value="paper-goods">Paper Goods</option>
+                <option value="clothing">Clothing</option>
+                <option value="travel-transport">Travel/Transport</option>
+                <option value="photography-videography">Photography/Videography</option>
+                <option value="decorations-florals">Decorations and Florals</option>
+                <option value="add-ons">Add Ons</option>
+            </select>
         </label>
         <br></br>
         <br></br>
@@ -119,12 +125,12 @@ function CreateNewCard() {
         <br></br>
         <label>
           Owners:
-          <input
-            type="text"
-            placeholder="Who is Doing This?"
-            value={owner}
-            onChange={(e) => setOwner(e.target.value)}
-          />
+          <select value={owner} onChange={(e) => setOwner(e.target.value)} defaultValue="Select">
+                <option value="hidden" hidden>Select</option>
+                <option value="planner">Venture North</option>
+                <option value="julia">Julia</option>
+                <option value="jason">Jason</option>
+            </select>
         </label>
         <br></br>
         <button type="submit">Create Card</button>
