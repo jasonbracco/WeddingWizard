@@ -25,8 +25,6 @@ function App() {
     });
   }, [])
 
-  console.log(allCards)
-  
   return (
     <Router>
       <div className="App">
@@ -58,7 +56,7 @@ function App() {
                   </div>
                 </div>
                 <div>
-                  <Board />
+                  <Board cards={allCards}/>
                 </div>
               </div>
             }
