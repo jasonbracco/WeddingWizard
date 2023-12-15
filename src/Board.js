@@ -7,7 +7,7 @@ import DoneColumn from "./DoneColumn";
 
 function Board() {
 
-  const allCards = useContext(CardContext);
+  const { allCards } = useContext(CardContext);
 
   const notStartedCards = allCards.filter((card) => card.status === "Not Started");
   const toDoCards = allCards.filter((card) => card.status === "Next To Do");

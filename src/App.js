@@ -12,6 +12,9 @@ export { CardContext };
 function App() {
 
   const [allCards, setAllCards] = useState([])
+  console.log(allCards)
+
+  const cardContextValue = { allCards, setAllCards }
 
   const todaysDate = new Date()
   const weddingDate = new Date("May 31, 2025 EST")
@@ -36,7 +39,7 @@ function App() {
           <NavBar />
         </div>
         <br></br>
-        <CardContext.Provider value={allCards}>
+        <CardContext.Provider value={cardContextValue}>
         <Routes>
           <Route 
             path="/createnew"

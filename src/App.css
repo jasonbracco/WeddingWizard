@@ -71,7 +71,7 @@
     border-style: solid;
     display: inline-block;
     width: 90%;
-    height: 150px;
+    height: 175px;
     margin: 2px;
     transition: border-color 0s ease-in-out; /* Smooth transition for the border color change */
 }

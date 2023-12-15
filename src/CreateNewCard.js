@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useContext } from "react";
+import { CardContext } from './App';
 
 function CreateNewCard() {
   const [cardTitle, setCardTitle] = useState("");
@@ -13,7 +15,8 @@ function CreateNewCard() {
   const [paymentStatusError, setPaymentStatusError] = useState(false)
   const [categoryError, setCategoryError] = useState(false);
   const [statusError, setStatusError] = useState(false)
-  
+
+  const { allCards, setAllCards } = useContext(CardContext);
 
   const createNewCardSubmit = async (event) => {
     event.preventDefault();
@@ -63,7 +66,8 @@ function CreateNewCard() {
           setDueByDate("");
           setPaymentStatus("hidden");
           setOwner("hidden");
-          setStatus("hidden")
+          setStatus("hidden");
+          setAllCards([...allCards, newCard])
         } else {
           console.error("Failed to create card:", response.statusText);
         }

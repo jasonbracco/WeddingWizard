@@ -1,72 +1,17 @@
-import {useState} from 'react';
 import Card from "./Card";
 
-function NotStartedColumn(props) {
-
-    const [cards, setCards] = useState(props.cards)
-    
+function NotStartedColumn(props) {    
 
   return (
     <div className="column-content">
       <div className="scrollable-content">
-        <div className="card">
-            <Card/>
-        </div>
-        <div className="card">
-            <Card />
-        </div>
-        <div className="card">
-            <Card />
-        </div>
-        <div className="card">
-            <Card />
-        </div>
-        <div className="card">
-            <Card />
-        </div>
-        <div className="card">
-            <Card />
-        </div>
-        <div className="card">
-            <Card />
-        </div>
-        <div className="card">
-            <Card />
-        </div>
-        <div className="card">
-            <Card />
-        </div>
-        <div className="card">
-            <Card />
-        </div>
-        <div className="card">
-            <Card />
-        </div>
-        <div className="card">
-            <Card />
-        </div>
-        <div className="card">
-            <Card />
-        </div>
-        <div className="card">
-            <Card />
-        </div>
-        <div className="card">
-            <Card />
-        </div>
-        <div className="card">
-            <Card />
-        </div>
-        <div className="card">
-            <Card />
-        </div>
-        <div className="card">
-            <Card />
-        </div>
+        {props.cards.map((card) => (
+          <div className="card">
+            <Card card={card}/>
+          </div>
+         ))}  
       </div>
-      <div className="column-price">
-            Total Price in this column is: $0.00
-        </div>
+      <div className="column-price">Total Price in this column is: $0.00</div>
     </div>
   );
 }

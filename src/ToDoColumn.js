@@ -1,9 +1,6 @@
-import {useState} from 'react';
 import Card from "./Card";
 
 function ToDoColumn(props) {
-
-  console.log(props)
 
   return (
     <div className="column-content">
