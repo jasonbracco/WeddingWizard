@@ -122,17 +122,17 @@ function CreateNewCard() {
             <option value="hidden" hidden>
               Select
             </option>
-            <option value="food-and-drink">Food and Drink</option>
-            <option value="entertainment">Entertainment</option>
-            <option value="rentals">Rentals</option>
-            <option value="paper-goods">Paper Goods</option>
-            <option value="clothing">Clothing</option>
-            <option value="travel-transport">Travel/Transport</option>
-            <option value="photography-videography">
+            <option value="Food and Drink">Food and Drink</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Rentals">Rentals</option>
+            <option value="Paper Goods">Paper Goods</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Travel and Transport">Travel/Transport</option>
+            <option value="Photography and Videography">
               Photography/Videography
             </option>
-            <option value="decorations-florals">Decorations and Florals</option>
-            <option value="add-ons">Add Ons</option>
+            <option value="Decorations and Florals">Decorations and Florals</option>
+            <option value="Add Ons">Add Ons</option>
           </select>
         </label>
         {categoryError ? (
@@ -150,9 +150,9 @@ function CreateNewCard() {
             <option value="hidden" hidden>
               Select
             </option>
-            <option value="none">Unpaid</option>
-            <option value="partial">Partial</option>
-            <option value="full">Fully Paid</option>
+            <option value="None">Unpaid</option>
+            <option value="Partial">Partial</option>
+            <option value="Full">Fully Paid</option>
           </select>
         </label>
         {paymentStatusError ? (
@@ -170,9 +170,9 @@ function CreateNewCard() {
             <option value="hidden" hidden>
               Select
             </option>
-            <option value="planner">Venture North</option>
-            <option value="julia">Julia</option>
-            <option value="jason">Jason</option>
+            <option value="Venture North">Venture North</option>
+            <option value="Julia">Julia</option>
+            <option value="Jason">Jason</option>
           </select>
         </label>
         {ownerError ? (
@@ -190,10 +190,10 @@ function CreateNewCard() {
             <option value="hidden" hidden>
               Select
             </option>
-            <option value="not-started">Not Started</option>
-            <option value="next-to-do">Next To Do</option>
-            <option value="in-progress">In Progress</option>
-            <option value="done">Done</option>
+            <option value="Not Started">Not Started</option>
+            <option value="Next To Do">Next To Do</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Done">Done</option>
           </select>
         </label>
         {statusError ? (

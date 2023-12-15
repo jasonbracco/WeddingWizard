@@ -1,9 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, createContext } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './NavBar';
 import Board from './Board';
 import CreateNewCard from './CreateNewCard'
 import './App.css';
+
+const CardContext = createContext([]);
+
+export { CardContext };
 
 function App() {
 
@@ -32,6 +36,7 @@ function App() {
           <NavBar />
         </div>
         <br></br>
+        <CardContext.Provider value={allCards}>
         <Routes>
           <Route 
             path="/createnew"
@@ -56,12 +61,13 @@ function App() {
                   </div>
                 </div>
                 <div>
-                  <Board cards={allCards}/>
+                  <Board/>
                 </div>
               </div>
             }
           />
         </Routes>
+        </CardContext.Provider>
       </div>
     </Router>
   );

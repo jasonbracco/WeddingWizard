@@ -1,21 +1,19 @@
-import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { CardContext } from './App';
 import ToDoColumn from "./ToDoColumn";
 import NotStartedColumn from "./NotStartedColumn";
 import InProgressColumn from "./InProgressColumn";
 import DoneColumn from "./DoneColumn";
 
-function Board(props) {
-  const cards = props.cards
-  console.log(cards)
+function Board() {
 
+  const allCards = useContext(CardContext);
 
-    const notStartedCards = (cards.filter((card) => card.status === 'not-started'));
-    const toDoCards = (cards.filter((card) => card.status === 'next-to-do'));
-    const inProgressCards = (cards.filter((card) => card.status === 'in-progress'));
-    const doneCards = (cards.filter((card) => card.status === 'done'));
+  const notStartedCards = allCards.filter((card) => card.status === "Not Started");
+  const toDoCards = allCards.filter((card) => card.status === "Next To Do");
+  const inProgressCards = allCards.filter((card) => card.status === "In Progress");
+  const doneCards = allCards.filter((card) => card.status === "Done");
 
-  console.log(toDoCards)
-  
   return (
     <div>
       <div className="row">
@@ -30,7 +28,7 @@ function Board(props) {
         <div className="card-column">
           <h2 className="column-header">Next To Do</h2>
           <div className="scroll-column">
-            <ToDoColumn cards={toDoCards}/>
+            <ToDoColumn cards={toDoCards} />
           </div>
           <br></br>
           <br></br>
@@ -38,7 +36,7 @@ function Board(props) {
         <div className="card-column">
           <h2 className="column-header">In Progress</h2>
           <div className="scroll-column">
-            <InProgressColumn cards={inProgressCards}/>
+            <InProgressColumn cards={inProgressCards} />
           </div>
           <br></br>
           <br></br>
@@ -46,7 +44,7 @@ function Board(props) {
         <div className="card-column">
           <h2 className="column-header">Done</h2>
           <div className="scroll-column">
-            <DoneColumn cards={doneCards}/>
+            <DoneColumn cards={doneCards} />
           </div>
           <br></br>
           <br></br>
