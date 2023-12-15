@@ -1,15 +1,22 @@
-function Card() {
+function Card(props) {
+
+    if (!props.card) {
+        return null;
+      }
+
+    console.log(props.card)
+
 
     return (
         <div className="card-container">
-            <div className="card-title"><strong>TITLE</strong></div>
+            <div className="card-title"><strong>{props.card.title}</strong></div>
             <ul className="card-content">
-                <li>Update:</li>
-                <li>Cost:</li>
-                <li>Due By Date:</li>
-                <li>Category:</li>
-                <li>Payment Status:</li>
-                <li>Owner:</li>
+                <li>Update: {props.card.update_text}</li>
+                <li>Cost: ${props.card.cost_associated}</li>
+                <li>Due By Date: {props.card.due_date}</li>
+                <li>Category: {props.card.category}</li>
+                <li>Payment Status: {props.card.payment_status}</li>
+                <li>Owner: {props.card.owner}</li>
             </ul>
         </div>
     )

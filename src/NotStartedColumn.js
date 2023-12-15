@@ -4,6 +4,7 @@ import Card from "./Card";
 function NotStartedColumn(props) {
 
     const [cards, setCards] = useState(props.cards)
+    
 
   return (
     <div className="column-content">

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ToDoColumn from "./ToDoColumn";
 import NotStartedColumn from "./NotStartedColumn";
 import InProgressColumn from "./InProgressColumn";
@@ -6,11 +6,15 @@ import DoneColumn from "./DoneColumn";
 
 function Board(props) {
   const cards = props.cards
+  console.log(cards)
 
-  const [notStartedCards, setNotStartedCards] = useState(cards.filter((card) => card.status === 'not-started'))
-  const [toDoCards, setToDoCards] = useState(cards.filter((card) => card.status === 'next-to-do'))
-  const [inProgressCards, setInProgressCards] = useState(cards.filter((card) => card.status === 'in-progress'))
-  const [doneCards, setDoneCards] = useState(cards.filter((card) => card.status === 'done'))
+
+    const notStartedCards = (cards.filter((card) => card.status === 'not-started'));
+    const toDoCards = (cards.filter((card) => card.status === 'next-to-do'));
+    const inProgressCards = (cards.filter((card) => card.status === 'in-progress'));
+    const doneCards = (cards.filter((card) => card.status === 'done'));
+
+  console.log(toDoCards)
   
   return (
     <div>
