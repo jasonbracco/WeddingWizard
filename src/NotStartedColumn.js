@@ -1,6 +1,9 @@
+import {useState} from 'react';
 import Card from "./Card";
 
-function NotStartedColumn() {
+function NotStartedColumn(props) {
+
+    const [cards, setCards] = useState(props.cards)
 
   return (
     <div className="column-content">

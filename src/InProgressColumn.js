@@ -1,6 +1,10 @@
+import {useState} from 'react';
 import Card from "./Card";
 
-function InProgressColumn() {
+function InProgressColumn(props) {
+
+  const [cards, setCards] = useState(props.cards)
+
   return (
     <div className="column-content">
       <div className="scrollable-content">
