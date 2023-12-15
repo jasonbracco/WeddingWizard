@@ -19,6 +19,9 @@ function CreateNewCard() {
     setOwnerError(false);
     setPaymentStatusError(false);
     setCategoryError(false);
+    console.log(category)
+    console.log(paymentStatus)
+    console.log(owner)
 
     if (category === "hidden") {
       setCategoryError(true);
@@ -51,10 +54,10 @@ function CreateNewCard() {
           setCardTitle("");
           setCurrentUpdate("");
           setCost("");
-          setCategory("");
+          setCategory("hidden");
           setDueByDate("");
-          setPaymentStatus("");
-          setOwner("");
+          setPaymentStatus("hidden");
+          setOwner("hidden");
         } else {
           console.error("Failed to create card:", response.statusText);
         }
@@ -164,7 +167,7 @@ function CreateNewCard() {
         <br></br>
         <br></br>
         <label>
-          Owners:
+          Owner:
           <select
             value={owner}
             onChange={(e) => setOwner(e.target.value)}
