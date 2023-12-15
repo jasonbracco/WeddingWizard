@@ -8,9 +8,11 @@ function CreateNewCard() {
   const [category, setCategory] = useState("hidden");
   const [paymentStatus, setPaymentStatus] = useState("hidden");
   const [owner, setOwner] = useState("hidden");
+  const [status, setStatus] = useState("hidden")
   const [ownerError, setOwnerError] = useState(false);
   const [paymentStatusError, setPaymentStatusError] = useState(false)
   const [categoryError, setCategoryError] = useState(false);
+  const [statusError, setStatusError] = useState(false)
   
 
   const createNewCardSubmit = async (event) => {
@@ -19,9 +21,9 @@ function CreateNewCard() {
     setOwnerError(false);
     setPaymentStatusError(false);
     setCategoryError(false);
-    console.log(category)
-    console.log(paymentStatus)
-    console.log(owner)
+    setStatusError(false)
+    console.log(currentUpdate)
+    console.log(status)
 
     if (category === "hidden") {
       setCategoryError(true);
@@ -29,6 +31,8 @@ function CreateNewCard() {
         setPaymentStatusError(true);
     } else if (owner === "hidden") {
       setOwnerError(true);
+    } else if (status === "hidden") {
+        setStatusError(true);
     } else {
       const newCard = {
         title: cardTitle,
@@ -38,6 +42,7 @@ function CreateNewCard() {
         category: category,
         paymentStatus: paymentStatus,
         owner: owner,
+        status: status
       };
 
       try {
@@ -58,6 +63,7 @@ function CreateNewCard() {
           setDueByDate("");
           setPaymentStatus("hidden");
           setOwner("hidden");
+          setStatus("hidden")
         } else {
           console.error("Failed to create card:", response.statusText);
         }
@@ -78,18 +84,6 @@ function CreateNewCard() {
             placeholder="Title"
             value={cardTitle}
             onChange={(e) => setCardTitle(e.target.value)}
-          />
-        </label>
-        <br></br>
-        <br></br>
-        <label>
-          Current Status:
-          <input
-            required
-            type="text"
-            placeholder="Status"
-            value={currentUpdate}
-            onChange={(e) => setCurrentUpdate(e.target.value)}
           />
         </label>
         <br></br>
@@ -182,6 +176,27 @@ function CreateNewCard() {
           </select>
         </label>
         {ownerError ? (
+          <label className="form-error-text">Please Select An Option</label>
+        ) : null}
+        <br></br>
+        <br></br>
+        <label>
+          Status:
+          <select
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+            defaultValue="Select"
+          >
+            <option value="hidden" hidden>
+              Select
+            </option>
+            <option value="not-started">Not Started</option>
+            <option value="next-to-do">Next To Do</option>
+            <option value="in-progress">In Progress</option>
+            <option value="done">Done</option>
+          </select>
+        </label>
+        {statusError ? (
           <label className="form-error-text">Please Select An Option</label>
         ) : null}
         <br></br>
