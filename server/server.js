@@ -49,6 +49,7 @@ app.put('/updatecard/:id', async (req, res) => {
     try {
         const cardId = req.params.id;
         const updatedCard = req.body
+        console.log(updatedCard)
 
         const result = await pool.query(
             'UPDATE cards SET title = $1, update_text = $2, cost_associated = $3, due_date = $4, category = $5, payment_status = $6, owner = $7, status = $8 WHERE id = $9 RETURNING *',

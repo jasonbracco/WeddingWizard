@@ -8,7 +8,6 @@ function Card(props) {
 
   const [isEditing, setIsEditing] = useState(false);
   const [updatedCard, setUpdatedCard] = useState({});
-  console.log(updatedCard)
   const [updatedTitle, setUpdatedTitle] = useState(props.card.title);
   const [updatedUpdate, setUpdatedUpdate] = useState(props.card.update_text);
   const [updatedCost, setUpdatedCost] = useState(props.card.cost_associated);
@@ -20,7 +19,20 @@ function Card(props) {
 
   const editClick = () => {
     setIsEditing(true);
-    setUpdatedCard({
+    // setUpdatedCard({
+    //   title: updatedTitle,
+    //   update: updatedUpdate,
+    //   cost: updatedCost,
+    //   dueDate: updatedDueDate,
+    //   category: updatedCategory,
+    //   paymentStatus: updatedPaymentStatus,
+    //   owner: updatedOwner,
+    //   status: updatedStatus,
+    // });
+  };
+
+  const cardUpdate = async () => {
+    const updatedCard = {
       title: updatedTitle,
       update: updatedUpdate,
       cost: updatedCost,
@@ -29,20 +41,16 @@ function Card(props) {
       paymentStatus: updatedPaymentStatus,
       owner: updatedOwner,
       status: updatedStatus,
-    });
-  };
-
-  const cardUpdate = async () => {
-    console.log(updatedTitle)
-    console.log(updatedCard)
+    }
     try {
-      const response = await fetch(`/updateCard/${props.card.id}`, {
+      const response = await fetch(`/updatecard/${props.card.id}`, {
         method: "PUT",
         headers: {
-          "Content-TYPE": "application.json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(updatedCard),
       });
+      console.log(updatedCard)
 
       if (response.ok) {
         setIsEditing(false);
@@ -108,7 +116,7 @@ function Card(props) {
           <input
             required
             type="text"
-            placeholder="Title"
+            placeholder="Update"
             value={updatedUpdate}
             onChange={(e) => setUpdatedUpdate(e.target.value)}
           />
