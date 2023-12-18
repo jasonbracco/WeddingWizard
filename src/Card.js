@@ -7,7 +7,6 @@ function Card(props) {
   const { totalCost, setTotalCost } = useContext(CostContext);
 
   const [isEditing, setIsEditing] = useState(false);
-  const [updatedCard, setUpdatedCard] = useState({});
   const [updatedTitle, setUpdatedTitle] = useState(props.card.title);
   const [updatedUpdate, setUpdatedUpdate] = useState(props.card.update_text);
   const [updatedCost, setUpdatedCost] = useState(props.card.cost_associated);
@@ -16,20 +15,6 @@ function Card(props) {
   const [updatedPaymentStatus, setUpdatedPaymentStatus] = useState(props.card.payment_status);
   const [updatedOwner, setUpdatedOwner] = useState(props.card.owner);
   const [updatedStatus, setUpdatedStatus] = useState(props.card.status);
-
-  const editClick = () => {
-    setIsEditing(true);
-    // setUpdatedCard({
-    //   title: updatedTitle,
-    //   update: updatedUpdate,
-    //   cost: updatedCost,
-    //   dueDate: updatedDueDate,
-    //   category: updatedCategory,
-    //   paymentStatus: updatedPaymentStatus,
-    //   owner: updatedOwner,
-    //   status: updatedStatus,
-    // });
-  };
 
   const cardUpdate = async () => {
     const updatedCard = {
@@ -205,7 +190,7 @@ function Card(props) {
             <li>Owner: {props.card.owner}</li>
           </ul>
           <div className="card-buttons">
-            <button onClick={editClick}>Edit</button>
+            <button onClick={() =>setIsEditing(true)}>Edit</button>
             <button>Delete</button>
           </div>
         </div>
