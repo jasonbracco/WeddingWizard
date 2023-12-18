@@ -1,6 +1,11 @@
 import { useState } from "react";
+import { useContext } from "react";
+import { CardContext, CostContext } from "./App";
 
 function Card(props) {
+  const { allCards, setAllCards } = useContext(CardContext);
+  const { totalCost, setTotalCost } = useContext(CostContext);
+
   const [isEditing, setIsEditing] = useState(false);
   const [updatedCard, setUpdatedCard] = useState({});
   const [updatedTitle, setUpdatedTitle] = useState(props.card.title);
@@ -38,10 +43,38 @@ function Card(props) {
 
       if (response.ok) {
         setIsEditing(false);
+
+        try {
+          const allCardsResponse = await fetch("/getallcards");
+          if (allCardsResponse.ok) {
+            const updatedCards = await allCardsResponse.json();
+            setAllCards(updatedCards);
+            const numericCost = updatedCards
+              .map((card) => parseFloat(card.cost_associated))
+              .reduce(
+                (accumulator, currentValue) => accumulator + currentValue
+              );
+            setTotalCost(
+              numericCost.toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              })
+            );
+          } else {
+            console.error(
+              "Failed fetching updated cards:",
+              allCardsResponse.statusText
+            );
+          }
+        } catch (error) {
+          console.error("Error fetching updated cards", error);
+        }
+        console.log("You reached the successful point")
+        setTotalCost(allCards.map((card) => card.cost));
       } else {
+        setIsEditing(false);
         console.error("Failed to update card:", response.statusText);
       }
-
     } catch (error) {
       console.error("Error:", error);
     }
@@ -71,7 +104,7 @@ function Card(props) {
             <li>Owner</li>
           </ul>
           <div className="card-buttons">
-            <button onClick={() => setIsEditing(false)}>Edit</button>
+            <button onClick={cardUpdate}>Edit</button>
             <button>Delete</button>
           </div>
         </div>

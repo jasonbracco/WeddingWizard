@@ -6,8 +6,10 @@ import CreateNewCard from './CreateNewCard'
 import './App.css';
 
 const CardContext = createContext([]);
+const CostContext = createContext();
 
 export { CardContext };
+export { CostContext };
 
 function App() {
 
@@ -15,6 +17,7 @@ function App() {
   const [totalCost, setTotalCost] = useState(0)
 
   const cardContextValue = { allCards, setAllCards }
+  const costContextValue = { totalCost, setTotalCost }
 
   const todaysDate = new Date()
   const weddingDate = new Date("May 31, 2025 EST")
@@ -47,6 +50,7 @@ function App() {
         </div>
         <br></br>
         <CardContext.Provider value={cardContextValue}>
+        <CostContext.Provider value={costContextValue}>
         <Routes>
           <Route 
             path="/createnew"
@@ -77,6 +81,7 @@ function App() {
             }
           />
         </Routes>
+        </CostContext.Provider>
         </CardContext.Provider>
       </div>
     </Router>
