@@ -81,7 +81,6 @@ function Card(props) {
           console.error("Error fetching updated cards", error);
         }
         console.log("You reached the successful point")
-        setTotalCost(allCards.map((card) => card.cost));
       } else {
         setIsEditing(false);
         console.error("Failed to update card:", response.statusText);
