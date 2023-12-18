@@ -22,6 +22,10 @@ function Card(props) {
         <li>Payment Status: {props.card.payment_status}</li>
         <li>Owner: {props.card.owner}</li>
       </ul>
+      <div className="card-buttons">
+        <button>Edit</button>
+        <button>Delete</button>
+      </div>
     </div>
   );
 }

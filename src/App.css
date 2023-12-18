@@ -73,6 +73,7 @@
     width: 90%;
     height: 175px;
     margin: 2px;
+    justify-content: space-between; /* Add space between content and buttons */
     transition: border-color 0s ease-in-out; /* Smooth transition for the border color change */
 }
 
@@ -93,6 +94,13 @@
     float: left;
     margin: 0;
     text-align: left
+}
+
+.card-buttons {
+    float: left;
+    width: 100%; /* Make the buttons take full width */
+    text-align: center; /* Center the buttons */
+    margin-top: 10px; /* Add some top margin for separation */
 }
 
 .card-form-container {

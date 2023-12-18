@@ -26,7 +26,6 @@ function App() {
     .then(response => response.json())
     .then(data => {
       setAllCards(data);
-      console.log(data)
       const numericCost = (data.map(card => parseFloat(card.cost_associated)).reduce((accumulator, currentValue) => accumulator + currentValue))
       setTotalCost(numericCost.toLocaleString('en-US', {
         style: 'currency',
@@ -39,8 +38,6 @@ function App() {
     setTotalCost(allCards.map(card => card.cost))
 
   }, [])
-
-
 
   return (
     <Router>

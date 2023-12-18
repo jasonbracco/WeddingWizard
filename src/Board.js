@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { CardContext } from "./App";
 import ToDoColumn from "./ToDoColumn";
 import NotStartedColumn from "./NotStartedColumn";
@@ -8,15 +8,14 @@ import DoneColumn from "./DoneColumn";
 function Board() {
   const { allCards } = useContext(CardContext);
 
-  const notStartedCards = allCards.filter(
-    (card) => card.status === "Not Started"
-  );
+  console.log(allCards)
+
+  const notStartedCards = allCards.filter((card) => card.status === "Not Started");
   const toDoCards = allCards.filter((card) => card.status === "Next To Do");
-  const inProgressCards = allCards.filter(
-    (card) => card.status === "In Progress"
-  );
+  const inProgressCards = allCards.filter((card) => card.status === "In Progress");
   const doneCards = allCards.filter((card) => card.status === "Done");
 
+  console.log(toDoCards)
   const notStartedCost = notStartedCards
     .map((card) => parseFloat(card.cost_associated))
     .reduce((accumulator, currentValue) => accumulator + currentValue, 0)
