@@ -71,7 +71,7 @@
     border-style: solid;
     display: inline-block;
     width: 90%;
-    height: 175px;
+    height: 250px;
     margin: 2px;
     justify-content: space-between; /* Add space between content and buttons */
     transition: border-color 0s ease-in-out; /* Smooth transition for the border color change */

@@ -8,6 +8,7 @@ function Card(props) {
 
   const [isEditing, setIsEditing] = useState(false);
   const [updatedCard, setUpdatedCard] = useState({});
+  console.log(updatedCard)
   const [updatedTitle, setUpdatedTitle] = useState(props.card.title);
   const [updatedUpdate, setUpdatedUpdate] = useState(props.card.update_text);
   const [updatedCost, setUpdatedCost] = useState(props.card.cost_associated);
@@ -32,6 +33,8 @@ function Card(props) {
   };
 
   const cardUpdate = async () => {
+    console.log(updatedTitle)
+    console.log(updatedCard)
     try {
       const response = await fetch(`/updateCard/${props.card.id}`, {
         method: "PUT",
@@ -92,20 +95,93 @@ function Card(props) {
     <div>
       {isEditing ? (
         <div className="card-container">
-          <div className="card-title">
-            <strong>Title</strong>
-          </div>
-          <ul className="card-content">
-            <li>Update</li>
-            <li>Cost</li>
-            <li>Due By Date</li>
-            <li>Category</li>
-            <li>Payment Status</li>
-            <li>Owner</li>
-          </ul>
+          Title:
+          <input
+            required
+            type="text"
+            placeholder="Title"
+            value={updatedTitle}
+            onChange={(e) => setUpdatedTitle(e.target.value)}
+          />
+          <br></br>
+          Update:
+          <input
+            required
+            type="text"
+            placeholder="Title"
+            value={updatedUpdate}
+            onChange={(e) => setUpdatedUpdate(e.target.value)}
+          />
+          <br></br>
+          Cost:
+          <input
+            required
+            type="text"
+            placeholder="Cost"
+            value={updatedCost}
+            onChange={(e) => setUpdatedCost(e.target.value)}
+          />
+          <br></br>
+          Due By:
+          <input
+            required
+            type="text"
+            placeholder="Due By Date"
+            value={updatedDueDate}
+            onChange={(e) => setUpdatedDueDate(e.target.value)}
+          />
+          <br></br>
+          Category:
+          <select
+            value={updatedCategory}
+            onChange={(e) => setUpdatedCategory(e.target.value)}
+          >
+            <option value="Food and Drink">Food and Drink</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Rentals">Rentals</option>
+            <option value="Paper Goods">Paper Goods</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Travel and Transport">Travel/Transport</option>
+            <option value="Photography and Videography">
+              Photography/Videography
+            </option>
+            <option value="Decorations and Florals">Decorations and Florals</option>
+            <option value="Add Ons">Add Ons</option>
+          </select>
+          <br></br>
+          Payment Status:
+          <select
+            value={updatedPaymentStatus}
+            onChange={(e) => setUpdatedPaymentStatus(e.target.value)}
+          >
+            <option value="None">Unpaid</option>
+            <option value="Partial">Partial</option>
+            <option value="Full">Fully Paid</option>
+          </select>
+          <br></br>
+          Owner:
+          <select
+            value={updatedOwner}
+            onChange={(e) => setUpdatedOwner(e.target.value)}
+          >
+            <option value="Venture North">Venture North</option>
+            <option value="Julia">Julia</option>
+            <option value="Jason">Jason</option>
+          </select>
+          <br></br>
+          Status:
+          <select
+            value={updatedStatus}
+            onChange={(e) => setUpdatedStatus(e.target.value)}
+          >
+            <option value="Not Started">Not Started</option>
+            <option value="Next To Do">Next To Do</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Done">Done</option>
+          </select>
           <div className="card-buttons">
-            <button onClick={cardUpdate}>Edit</button>
-            <button>Delete</button>
+            <button onClick={() => setIsEditing(false)}>Back</button>
+            <button onClick={cardUpdate}>Submit Changes</button>
           </div>
         </div>
       ) : (

@@ -35,7 +35,7 @@ app.post("/createCard", async (req, res) => {
 app.get('/getallcards', async (req, res) => {
     try {
         const result = await pool.query(
-            'SELECT id, title, update_text, cost_associated, to_char(due_date, \'MM/DD/YYYY\') AS formatted_due_date, category, payment_status, owner, status FROM cards'
+            'SELECT id, title, update_text, cost_associated, to_char(due_date, \'MM/DD/YYYY\') AS due_date, category, payment_status, owner, status FROM cards'
         );
         const cards = result.rows;
         res.json(cards);
