@@ -1,6 +1,25 @@
 import { useState } from "react";
 
 function Card(props) {
+
+  const [isEditing, setIsEditing] = useState(false)
+  const [updateCard, setUpdateCard] = useState({})
+
+  const editClick = () => {
+    setIsEditing(true)
+    setUpdateCard({
+      title: props.card.title,
+      update: props.card.update_text,
+      cost: props.card.cost_associated,
+      dueDate: props.card.due_date,
+      category: props.card.category,
+      paymentStatus: props.card.payment_status,
+      owner: props.card.owner,
+      status: props.card.status,
+    })
+    console.log(updateCard)
+  }
+
   if (!props.card) {
     return (
       <div className="card-container">
@@ -23,7 +42,7 @@ function Card(props) {
         <li>Owner: {props.card.owner}</li>
       </ul>
       <div className="card-buttons">
-        <button>Edit</button>
+        <button onClick={editClick}>Edit</button>
         <button>Delete</button>
       </div>
     </div>
