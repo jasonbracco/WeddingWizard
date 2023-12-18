@@ -22,6 +22,8 @@ function Board() {
           <div className="scroll-column">
             <NotStartedColumn cards={notStartedCards} />
           </div>
+          <div className="column-price">Total Price in this column is: $0.00</div>
+
           <br></br>
           <br></br>
         </div>
@@ -30,6 +32,8 @@ function Board() {
           <div className="scroll-column">
             <ToDoColumn cards={toDoCards} />
           </div>
+          <div className="column-price">Total Price in this column is: $0.00</div>
+
           <br></br>
           <br></br>
         </div>
@@ -38,6 +42,7 @@ function Board() {
           <div className="scroll-column">
             <InProgressColumn cards={inProgressCards} />
           </div>
+          <div className="column-price">Total Price in this column is: $0.00</div>
           <br></br>
           <br></br>
         </div>
@@ -46,6 +51,7 @@ function Board() {
           <div className="scroll-column">
             <DoneColumn cards={doneCards} />
           </div>
+          <div className="column-price">Total Price in this column is: $0.00</div>
           <br></br>
           <br></br>
         </div>

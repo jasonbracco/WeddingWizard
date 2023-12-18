@@ -12,7 +12,9 @@ export { CardContext };
 function App() {
 
   const [allCards, setAllCards] = useState([])
+  const [totalCost, setTotalCost] = useState(0)
   console.log(allCards)
+  console.log(totalCost)
 
   const cardContextValue = { allCards, setAllCards }
 
@@ -26,11 +28,21 @@ function App() {
     .then(response => response.json())
     .then(data => {
       setAllCards(data);
+      console.log(data)
+      const numericCost = (data.map(card => parseFloat(card.cost_associated)).reduce((accumulator, currentValue) => accumulator + currentValue))
+      setTotalCost(numericCost.toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }));
     })
     .catch(error => {
       console.error('Error fetching cards:', error)
     });
+    setTotalCost(allCards.map(card => card.cost))
+
   }, [])
+
+
 
   return (
     <Router>
@@ -54,7 +66,7 @@ function App() {
               <div className>
                 <div className="time-cost-filter-widgets">
                   <div className="total-price">
-                    <strong>The total price on the board will go here</strong>
+                    <strong>Total Cost: {totalCost}</strong>
                   </div>
                   <div className="countdown-clock">
                     <strong>Days Until Wedding: {daysUntilWedding}</strong>
