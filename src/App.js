@@ -13,8 +13,6 @@ function App() {
 
   const [allCards, setAllCards] = useState([])
   const [totalCost, setTotalCost] = useState(0)
-  console.log(allCards)
-  console.log(totalCost)
 
   const cardContextValue = { allCards, setAllCards }
 
