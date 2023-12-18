@@ -28,7 +28,7 @@ app.post("/createCard", async (req, res) => {
     res.status(201).json(newCard);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Internal Server Error " });
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
@@ -44,6 +44,23 @@ app.get('/getallcards', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+app.put('/updatecard/:id', async (req, res) => {
+    try {
+        const cardId = req.params.id;
+        const updatedCard = req.body
+
+        const result = await pool.query(
+            'UPDATE cards SET title = $1, update_text = $2, cost_associated = $3, due_date = $4, category = $5, payment_status = $6, owner = $7, status = $8 WHERE id = $9 RETURNING *',
+            [updatedCard.title, updatedCard.update, updatedCard.cost, updatedCard.dueDate, updatedCard.category, updatedCard.paymentStatus, updatedCard.owner, updatedCard.status, cardId]
+        )
+        const updatedCardData = result.rows[0];
+        res.json(updatedCardData);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
