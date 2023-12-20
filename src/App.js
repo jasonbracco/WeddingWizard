@@ -43,6 +43,7 @@ function App() {
 
   }, [])
 
+
   return (
     <Router>
       <div className="App">
@@ -58,7 +59,7 @@ function App() {
             element={
             <div>
               <CreateNewCard />
-            </div>}
+            </div>} 
           />
           <Route 
             path="/"
@@ -72,7 +73,7 @@ function App() {
                     <strong>Days Until Wedding: {daysUntilWedding}</strong>
                   </div>
                   <div className="filter">
-                    <strong>Filter Here</strong>
+                    <strong>Filter By Category:</strong>
                   </div>
                 </div>
                 <div>
