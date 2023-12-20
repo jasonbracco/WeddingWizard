@@ -73,7 +73,7 @@ function App() {
                     <strong>Days Until Wedding: {daysUntilWedding}</strong>
                   </div>
                   <div className="filter">
-                    <strong>Filter By Category:</strong>
+                    <strong>Filter:!!</strong>
                   </div>
                 </div>
                 <div>
