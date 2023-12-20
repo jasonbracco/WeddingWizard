@@ -47,19 +47,7 @@ function App() {
 
   const handleFilter = (e) => {
       setFilterSearch(e.target.value)
-      console.log("Filter Activated!")
-      // if (filterSearch !== ""){
-      //   const filteredCards = (allCards.filter(card => 
-      //     Object.values(card).some(value => 
-      //       typeof value === 'string' && value.toLowerCase().includes(filterSearch.toLowerCase())
-      //     )
-      //   ))
-      //   console.log(filteredCards)
-      // }
-      // else {
-      //   console.log(allCards)
-      // }
-      
+      console.log("Filter Activated!")  
   }
   
   return (
