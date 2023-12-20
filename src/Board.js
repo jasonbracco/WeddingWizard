@@ -1,17 +1,26 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { CardContext } from "./App";
+import { FilterContext } from "./App";
 import ToDoColumn from "./ToDoColumn";
 import NotStartedColumn from "./NotStartedColumn";
 import InProgressColumn from "./InProgressColumn";
 import DoneColumn from "./DoneColumn";
 
 function Board() {
-  const { allCards } = useContext(CardContext);
 
-  const notStartedCards = allCards.filter((card) => card.status === "Not Started");
-  const toDoCards = allCards.filter((card) => card.status === "Next To Do");
-  const inProgressCards = allCards.filter((card) => card.status === "In Progress");
-  const doneCards = allCards.filter((card) => card.status === "Done");
+  const { allCards } = useContext(CardContext);
+  const { filterSearch } = useContext(FilterContext);
+  
+  const filteredCards = (allCards.filter(card => 
+        Object.values(card).some(value => 
+          typeof value === 'string' && value.toLowerCase().includes(filterSearch.toLowerCase())
+        )
+  ))
+
+  const notStartedCards = filteredCards.filter((card) => card.status === "Not Started");
+  const toDoCards = filteredCards.filter((card) => card.status === "Next To Do");
+  const inProgressCards = filteredCards.filter((card) => card.status === "In Progress");
+  const doneCards = filteredCards.filter((card) => card.status === "Done");
 
   const notStartedCost = notStartedCards
     .map((card) => parseFloat(card.cost_associated))

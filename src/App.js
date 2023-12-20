@@ -18,11 +18,10 @@ function App() {
   const [allCards, setAllCards] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
   const [filterSearch, setFilterSearch] = useState("");
-  const [availableCards, setAvailableCards] = useState([])
 
   const cardContextValue = { allCards, setAllCards };
   const costContextValue = { totalCost, setTotalCost };
-  const filterContextValue = { availableCards };
+  const filterContextValue = { filterSearch };
 
   const todaysDate = new Date();
   const weddingDate = new Date("May 31, 2025 EST");
@@ -47,14 +46,20 @@ function App() {
   }, [])
 
   const handleFilter = (e) => {
-      e.preventDefault()
+      setFilterSearch(e.target.value)
       console.log("Filter Activated!")
-      const filteredCards = (allCards.filter(card => 
-        Object.values(card).some(value => 
-          typeof value === 'string' && value.toLowerCase().includes(filterSearch.toLowerCase())
-        )
-      ))
-      console.log(filteredCards)
+      // if (filterSearch !== ""){
+      //   const filteredCards = (allCards.filter(card => 
+      //     Object.values(card).some(value => 
+      //       typeof value === 'string' && value.toLowerCase().includes(filterSearch.toLowerCase())
+      //     )
+      //   ))
+      //   console.log(filteredCards)
+      // }
+      // else {
+      //   console.log(allCards)
+      // }
+      
   }
   
   return (
@@ -87,15 +92,15 @@ function App() {
                     <strong>Days Until Wedding: {daysUntilWedding}</strong>
                   </div>
                   <div className="filter">
-                    <form onSubmit={handleFilter}>
+                    {/* <form onSubmit={handleFilter}> */}
                       <input 
                         type="text"
                         placeholder="Search by Category"
                         value={filterSearch}
-                        onChange={(e) => setFilterSearch(e.target.value)}
+                        onChange={handleFilter}
                       />
-                      <button type="submit">Filter</button>
-                    </form>
+                      {/* <button type="submit">Filter</button> */}
+                    {/* </form> */}
                   </div>
                 </div>
                 <div>
