@@ -16,7 +16,7 @@ function App() {
   const [allCards, setAllCards] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
   const [filterSearch, setFilterSearch] = useState("");
-  const [filteredCards, setFilteredCards] = useState([])
+  const [availableCards, setAvailableCards] = useState([])
   // console.log(allCards)
 
   const cardContextValue = { allCards, setAllCards };
@@ -45,13 +45,19 @@ function App() {
   }, [])
 
   useEffect(() => {
-    console.log("Filter Activated!")
-    const filteredCards = allCards.filter(card => 
-      Object.values(card).some(value => 
-        typeof value === 'string' && value.toLowerCase().includes(filterSearch.toLowerCase())
+    if(filterSearch !== ""){
+      setAvailableCards([])
+      console.log("Filter Activated!")
+      const filteredCards = allCards.filter(card => 
+        Object.values(card).some(value => 
+          typeof value === 'string' && value.toLowerCase().includes(filterSearch.toLowerCase())
+        )
       )
-    )
-    console.log(filteredCards)
+      console.log(filteredCards)
+      setAllCards(filteredCards)
+      console.log(filterSearch)
+    }
+
   }, [filterSearch])
 
   
