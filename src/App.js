@@ -13,23 +13,25 @@ export { CostContext };
 
 function App() {
 
-  const [allCards, setAllCards] = useState([])
-  const [totalCost, setTotalCost] = useState(0)
+  const [allCards, setAllCards] = useState([]);
+  const [totalCost, setTotalCost] = useState(0);
+  const [filterSearch, setFilterSearch] = useState("");
+  const [filteredCards, setFilteredCards] = useState([])
+  // console.log(allCards)
 
-  const cardContextValue = { allCards, setAllCards }
-  const costContextValue = { totalCost, setTotalCost }
+  const cardContextValue = { allCards, setAllCards };
+  const costContextValue = { totalCost, setTotalCost };
 
-  const todaysDate = new Date()
-  const weddingDate = new Date("May 31, 2025 EST")
-  const timeUntilWedding = weddingDate.getTime() - todaysDate.getTime()
-  const daysUntilWedding = Math.ceil(timeUntilWedding/(1000 * 60 * 60 * 24))
+  const todaysDate = new Date();
+  const weddingDate = new Date("May 31, 2025 EST");
+  const timeUntilWedding = weddingDate.getTime() - todaysDate.getTime();
+  const daysUntilWedding = Math.ceil(timeUntilWedding/(1000 * 60 * 60 * 24));
 
   useEffect(() => {
     fetch('/getallcards')
     .then(response => response.json())
     .then(data => {
       setAllCards(data);
-      console.log(data)
       const numericCost = (data.map(card => parseFloat(card.cost_associated)).reduce((accumulator, currentValue) => accumulator + currentValue))
       setTotalCost(numericCost.toLocaleString('en-US', {
         style: 'currency',
@@ -40,9 +42,19 @@ function App() {
       console.error('Error fetching cards:', error)
     });
     setTotalCost(allCards.map(card => card.cost))
-
   }, [])
 
+  useEffect(() => {
+    console.log("Filter Activated!")
+    const filteredCards = allCards.filter(card => 
+      Object.values(card).some(value => 
+        typeof value === 'string' && value.toLowerCase().includes(filterSearch.toLowerCase())
+      )
+    )
+    console.log(filteredCards)
+  }, [filterSearch])
+
+  
 
   return (
     <Router>
@@ -73,7 +85,13 @@ function App() {
                     <strong>Days Until Wedding: {daysUntilWedding}</strong>
                   </div>
                   <div className="filter">
-                    <strong>Filter:!!</strong>
+                    <strong>Filter:</strong>
+                    <input 
+                      type="text"
+                      placeholder="Search by Category"
+                      value={filterSearch}
+                      onChange={(e) => setFilterSearch(e.target.value)}
+                    />
                   </div>
                 </div>
                 <div>
