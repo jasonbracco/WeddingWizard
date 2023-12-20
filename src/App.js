@@ -80,15 +80,13 @@ function App() {
                     <strong>Days Until Wedding: {daysUntilWedding}</strong>
                   </div>
                   <div className="filter">
-                    {/* <form onSubmit={handleFilter}> */}
+                    <strong>Filter:</strong>
                       <input 
                         type="text"
-                        placeholder="Search by Category"
+                        placeholder="Search"
                         value={filterSearch}
                         onChange={handleFilter}
                       />
-                      {/* <button type="submit">Filter</button> */}
-                    {/* </form> */}
                   </div>
                 </div>
                 <div>
