@@ -7,9 +7,11 @@ import './App.css';
 
 const CardContext = createContext([]);
 const CostContext = createContext();
+const FilterContext = createContext([]);
 
 export { CardContext };
 export { CostContext };
+export { FilterContext };
 
 function App() {
 
@@ -17,10 +19,10 @@ function App() {
   const [totalCost, setTotalCost] = useState(0);
   const [filterSearch, setFilterSearch] = useState("");
   const [availableCards, setAvailableCards] = useState([])
-  // console.log(allCards)
 
   const cardContextValue = { allCards, setAllCards };
   const costContextValue = { totalCost, setTotalCost };
+  const filterContextValue = { availableCards };
 
   const todaysDate = new Date();
   const weddingDate = new Date("May 31, 2025 EST");
@@ -32,7 +34,7 @@ function App() {
     .then(response => response.json())
     .then(data => {
       setAllCards(data);
-      const numericCost = (data.map(card => parseFloat(card.cost_associated)).reduce((accumulator, currentValue) => accumulator + currentValue))
+      const numericCost = (data.map(card => parseFloat(card.cost_associated)).reduce((totalCost, nextItem) => totalCost + nextItem))
       setTotalCost(numericCost.toLocaleString('en-US', {
         style: 'currency',
         currency: 'USD',
@@ -44,24 +46,17 @@ function App() {
     setTotalCost(allCards.map(card => card.cost))
   }, [])
 
-  useEffect(() => {
-    if(filterSearch !== ""){
-      setAvailableCards([])
+  const handleFilter = (e) => {
+      e.preventDefault()
       console.log("Filter Activated!")
-      const filteredCards = allCards.filter(card => 
+      const filteredCards = (allCards.filter(card => 
         Object.values(card).some(value => 
           typeof value === 'string' && value.toLowerCase().includes(filterSearch.toLowerCase())
         )
-      )
+      ))
       console.log(filteredCards)
-      setAllCards(filteredCards)
-      console.log(filterSearch)
-    }
-
-  }, [filterSearch])
-
+  }
   
-
   return (
     <Router>
       <div className="App">
@@ -71,6 +66,7 @@ function App() {
         <br></br>
         <CardContext.Provider value={cardContextValue}>
         <CostContext.Provider value={costContextValue}>
+        <FilterContext.Provider value={filterContextValue}>
         <Routes>
           <Route 
             path="/createnew"
@@ -81,7 +77,7 @@ function App() {
           />
           <Route 
             path="/"
-            element={
+            element={ 
               <div className>
                 <div className="time-cost-filter-widgets">
                   <div className="total-price">
@@ -91,13 +87,15 @@ function App() {
                     <strong>Days Until Wedding: {daysUntilWedding}</strong>
                   </div>
                   <div className="filter">
-                    <strong>Filter:</strong>
-                    <input 
-                      type="text"
-                      placeholder="Search by Category"
-                      value={filterSearch}
-                      onChange={(e) => setFilterSearch(e.target.value)}
-                    />
+                    <form onSubmit={handleFilter}>
+                      <input 
+                        type="text"
+                        placeholder="Search by Category"
+                        value={filterSearch}
+                        onChange={(e) => setFilterSearch(e.target.value)}
+                      />
+                      <button type="submit">Filter</button>
+                    </form>
                   </div>
                 </div>
                 <div>
@@ -107,6 +105,7 @@ function App() {
             }
           />
         </Routes>
+        </FilterContext.Provider>
         </CostContext.Provider>
         </CardContext.Provider>
       </div>
