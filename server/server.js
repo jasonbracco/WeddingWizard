@@ -49,7 +49,6 @@ app.put('/updatecard/:id', async (req, res) => {
     try {
         const cardId = req.params.id;
         const updatedCard = req.body
-        console.log(updatedCard)
 
         const result = await pool.query(
             'UPDATE cards SET title = $1, update_text = $2, cost_associated = $3, due_date = $4, category = $5, payment_status = $6, owner = $7, status = $8 WHERE id = $9 RETURNING *',
@@ -61,6 +60,23 @@ app.put('/updatecard/:id', async (req, res) => {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
+})
+
+app.delete('/deletecard/:id', async (req, res) => {
+  try {
+    const cardId = req.params.id;
+
+    const result = await pool.query(
+      `DELETE FROM cards WHERE id = $1`,
+      [cardId]
+    )
+
+    res.json({ success: true, message: "Card Deleted" });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, error: 'Internal Server Error' })
+  }
 })
 
 app.listen(port, () => {
