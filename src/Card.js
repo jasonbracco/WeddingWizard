@@ -12,7 +12,9 @@ function Card(props) {
   const [updatedCost, setUpdatedCost] = useState(props.card.cost_associated);
   const [updatedDueDate, setUpdatedDueDate] = useState(props.card.due_date);
   const [updatedCategory, setUpdatedCategory] = useState(props.card.category);
-  const [updatedPaymentStatus, setUpdatedPaymentStatus] = useState(props.card.payment_status);
+  const [updatedPaymentStatus, setUpdatedPaymentStatus] = useState(
+    props.card.payment_status
+  );
   const [updatedOwner, setUpdatedOwner] = useState(props.card.owner);
   const [updatedStatus, setUpdatedStatus] = useState(props.card.status);
 
@@ -26,7 +28,7 @@ function Card(props) {
       paymentStatus: updatedPaymentStatus,
       owner: updatedOwner,
       status: updatedStatus,
-    }
+    };
     try {
       const response = await fetch(`/updatecard/${props.card.id}`, {
         method: "PUT",
@@ -35,7 +37,6 @@ function Card(props) {
         },
         body: JSON.stringify(updatedCard),
       });
-      console.log(updatedCard)
 
       if (response.ok) {
         setIsEditing(false);
@@ -65,10 +66,51 @@ function Card(props) {
         } catch (error) {
           console.error("Error fetching updated cards", error);
         }
-        console.log("You reached the successful point")
       } else {
         setIsEditing(false);
         console.error("Failed to update card:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  const cardDelete = async () => {
+    try {
+      const response = await fetch(`/deletecard/${props.card.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.ok) {
+        try {
+          const allCardsResponse = await fetch("/getallcards");
+          if (allCardsResponse.ok) {
+            const updatedCards = await allCardsResponse.json();
+            setAllCards(updatedCards);
+            const numericCost = updatedCards
+              .map((card) => parseFloat(card.cost_associated))
+              .reduce(
+                (accumulator, currentValue) => accumulator + currentValue
+              );
+            setTotalCost(
+              numericCost.toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              })
+            );
+          } else {
+            console.error(
+              "Failed fetching updated cards:",
+              allCardsResponse.statusText
+            );
+          }
+        } catch (error) {
+          console.error("Error fetching updated cards", error);
+        }
+      } else {
+        console.error("Failed to Delete Card", response.statusText);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -137,7 +179,9 @@ function Card(props) {
             <option value="Photography and Videography">
               Photography/Videography
             </option>
-            <option value="Decorations and Florals">Decorations and Florals</option>
+            <option value="Decorations and Florals">
+              Decorations and Florals
+            </option>
             <option value="Add Ons">Add Ons</option>
           </select>
           <br></br>
@@ -190,8 +234,8 @@ function Card(props) {
             <li>Owner: {props.card.owner}</li>
           </ul>
           <div className="card-buttons">
-            <button onClick={() =>setIsEditing(true)}>Edit</button>
-            <button>Delete</button>
+            <button onClick={() => setIsEditing(true)}>Edit</button>
+            <button onClick={cardDelete}>Delete</button>
           </div>
         </div>
       )}
