@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const app = express();
 const { Pool } = require("pg");
@@ -5,11 +6,11 @@ const { Pool } = require("pg");
 const port = 3001;
 
 const pool = new Pool({
-  user: "jasonbracco",
-  host: "localhost",
-  database: "wedding_wizard",
-  password: "Jbroc2121!",
-  port: 5433,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
 
 app.use(express.json());
