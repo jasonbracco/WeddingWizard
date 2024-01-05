@@ -25,7 +25,6 @@ app.post("/createcard", async (req, res) => {
     );
 
     const newCard = result.rows[0];
-    console.log
 
     res.status(201).json(newCard);
   } catch (error) {

@@ -12,7 +12,7 @@ const FilterContext = createContext([]);
 export { CardContext };
 export { CostContext };
 export { FilterContext };
-
+console.log("hi")
 function App() {
 
   const [allCards, setAllCards] = useState([]);

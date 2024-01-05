@@ -2,8 +2,6 @@ import Card from "./Card";
 
 function NotStartedColumn(props) {    
 
-  console.log(props)
-
   return (
     <div className="column-content">
       <div className="scrollable-content">
