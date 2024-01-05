@@ -22,7 +22,7 @@ Startup:
 
 To run the frontend locally, use npm start in the project directory and open localhost:3000 in your browser.
 
-To start the server, cd into the server directory and use node server.js.
+To start the server, cd into the server directory and use npm run dev.  Nodemon is used in this project, so you will not need to restart the server every time you make a change to the back end.  If you like, you can still use node server.js in the server directory.
 
 When you start the server locally, the front end will not load unless you have connected a database to the project.
 
