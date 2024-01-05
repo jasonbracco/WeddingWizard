@@ -1,3 +1,43 @@
+Developer Provided Guidelines:
+
+Purpose and Functionality:
+
+My fiance and I were in the middle of planning our wedding, and working with multiple spreadsheets covering different topics got a little out of hand. I have professionally used Trello to organize tasks, track work, and assign values to quantify a project, and I thought that would be a great application to our wedding planning.
+
+I wanted to break everything up by task, with each task having different properties that enable tracking and budeting all in one.
+
+Users create cards to visualize one task, such as Booking a Band, Florals, or Signing the Venue Contract. Each card gets assigned a category, due date, cost, owner, card status, and payment status. Post creation, the user can edit the Update field. Each card can be moved by selecting a different Status, edited by selecting the Edit button, or deleted with the Delete Button.
+
+The program shows you the days until your wedding (customizable), total cost (calculated based on input), and allows the user to filter by any value that has been inputted or edited on a card.
+
+Tech:
+
+I bootstrapped this program with Create React App (https://github.com/facebook/create-react-app).
+
+Everything is written in JavaScript.
+
+The server side was built using Express.js, and the local database is PostgreSQL.
+
+Startup:
+
+To run the frontend locally, use npm start in the project directory and open localhost:3000 in your browser.
+
+To start the server, cd into the server directory and use node server.js.
+
+When you start the server locally, the front end will not load unless you have connected a database to the project.
+
+Create your own PostgreSQL database and connect it to the program referencing the PostgreSQL documentation. As you can see in server.js, a new Pool is created using the following:
+
+DB_USER
+DB_HOST
+DB_DATABASE
+DB_PASSWORD
+DB_PORT
+
+Create a .env file in the server directory to store this information, as it will be specific to your PostgreSQL account and table.
+
+React Provided Guidelines:
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -38,14 +78,3 @@ If you aren't satisfied with the build tool and configuration choices, you can `
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Overview
-
-This is a Trello-style application made to organize and visualize wedding related tasks and expenses.  I created this while planning my own wedding, and hopefully you can find some use out of it as well.
-
-## Tech
-
-This application was made with React and JavaScript.  The backend server.js file is Express, and it is connected to a PostgreSQL database.
-
-
-
