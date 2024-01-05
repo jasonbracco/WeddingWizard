@@ -25,8 +25,6 @@ function CreateNewCard() {
     setPaymentStatusError(false);
     setCategoryError(false);
     setStatusError(false)
-    console.log(currentUpdate)
-    console.log(status)
 
     if (category === "hidden") {
       setCategoryError(true);
@@ -40,8 +38,8 @@ function CreateNewCard() {
       const newCard = {
         title: cardTitle,
         update: currentUpdate,
-        cost: cost,
-        dueDate: dueByDate,
+        cost_associated: cost,
+        due_date: dueByDate,
         category: category,
         paymentStatus: paymentStatus,
         owner: owner,
@@ -49,7 +47,7 @@ function CreateNewCard() {
       };
 
       try {
-        const response = await fetch("/createCard", {
+        const response = await fetch("/createcard", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

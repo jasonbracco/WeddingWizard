@@ -1,11 +1,11 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { CardContext } from "./App";
 import { FilterContext } from "./App";
 import ToDoColumn from "./ToDoColumn";
 import NotStartedColumn from "./NotStartedColumn";
 import InProgressColumn from "./InProgressColumn";
 import DoneColumn from "./DoneColumn";
-
+ 
 function Board() {
 
   const { allCards } = useContext(CardContext);
@@ -16,7 +16,7 @@ function Board() {
           typeof value === 'string' && value.toLowerCase().includes(filterSearch.toLowerCase())
         )
   ))
-
+  
   const notStartedCards = filteredCards.filter((card) => card.status === "Not Started");
   const toDoCards = filteredCards.filter((card) => card.status === "Next To Do");
   const inProgressCards = filteredCards.filter((card) => card.status === "In Progress");
