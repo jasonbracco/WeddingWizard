@@ -37,11 +37,11 @@ function CreateNewCard() {
     } else {
       const newCard = {
         title: cardTitle,
-        update: currentUpdate,
+        update_text: currentUpdate,
         cost_associated: cost,
         due_date: dueByDate,
         category: category,
-        paymentStatus: paymentStatus,
+        payment_status: paymentStatus,
         owner: owner,
         status: status
       };
@@ -91,7 +91,7 @@ function CreateNewCard() {
         <br></br>
         <br></br>
         <label>
-          Cost:
+          Cost (No Commas):
           <input
             required
             type="text"
@@ -130,6 +130,9 @@ function CreateNewCard() {
             <option value="Paper Goods">Paper Goods</option>
             <option value="Clothing">Clothing</option>
             <option value="Travel and Transport">Travel/Transport</option>
+            <option value="Lodging">Lodging</option>
+            <option value="Venue">Venue</option>
+            <option value="Wedding Planner">Wedding Planner</option>
             <option value="Photography and Videography">
               Photography/Videography
             </option>
@@ -152,7 +155,7 @@ function CreateNewCard() {
             <option value="hidden" hidden>
               Select
             </option>
-            <option value="None">Unpaid</option>
+            <option value="Unpaid">Unpaid</option>
             <option value="Partial">Partial</option>
             <option value="Full">Fully Paid</option>
           </select>
@@ -175,6 +178,7 @@ function CreateNewCard() {
             <option value="Venture North">Venture North</option>
             <option value="Julia">Julia</option>
             <option value="Jason">Jason</option>
+            <option value="Jason and Julia">Jason and Julia</option>
           </select>
         </label>
         {ownerError ? (

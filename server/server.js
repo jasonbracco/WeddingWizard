@@ -17,11 +17,11 @@ app.use(express.json());
 
 app.post("/createcard", async (req, res) => {
   try {
-    const { title, update, cost_associated, due_date, category, paymentStatus, owner, status } = req.body;
+    const { title, update_text, cost_associated, due_date, category, payment_status, owner, status } = req.body;
 
     const result = await pool.query(
       'INSERT INTO cards (title, update_text, cost_associated, due_date, category, payment_status, owner, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *',
-      [title, update, cost_associated, due_date, category, paymentStatus, owner, status]
+      [title, update_text, cost_associated, due_date, category, payment_status, owner, status]
     );
 
     const newCard = result.rows[0];
