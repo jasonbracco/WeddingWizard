@@ -3,8 +3,8 @@ import { useContext } from "react";
 import { CardContext, CostContext } from "./App";
 
 function Card(props) {
-  const { allCards, setAllCards } = useContext(CardContext);
-  const { totalCost, setTotalCost } = useContext(CostContext);
+  const { setAllCards } = useContext(CardContext);
+  const { setTotalCost } = useContext(CostContext);
 
   const [isEditing, setIsEditing] = useState(false);
   const [updatedTitle, setUpdatedTitle] = useState(props.card.title);
