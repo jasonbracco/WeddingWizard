@@ -16,8 +16,8 @@ function CreateNewCard() {
   const [categoryError, setCategoryError] = useState(false);
   const [statusError, setStatusError] = useState(false)
 
-  const { allCards, setAllCards } = useContext(CardContext);
-  const { totalCost, setTotalCost } = useContext(CostContext);
+  const { setAllCards } = useContext(CardContext);
+  const { setTotalCost } = useContext(CostContext);
 
 
   const createNewCardSubmit = async (event) => {
