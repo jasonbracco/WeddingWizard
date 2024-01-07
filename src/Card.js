@@ -175,6 +175,9 @@ function Card(props) {
             <option value="Rentals">Rentals</option>
             <option value="Paper Goods">Paper Goods</option>
             <option value="Clothing">Clothing</option>
+            <option value="Lodging">Lodging</option>
+            <option value="Venue">Venue</option>
+            <option value="Wedding Planner">Wedding Planner</option>
             <option value="Travel and Transport">Travel/Transport</option>
             <option value="Photography and Videography">
               Photography/Videography
@@ -190,7 +193,7 @@ function Card(props) {
             value={updatedPaymentStatus}
             onChange={(e) => setUpdatedPaymentStatus(e.target.value)}
           >
-            <option value="None">Unpaid</option>
+            <option value="Unpaid">Unpaid</option>
             <option value="Partial">Partial</option>
             <option value="Full">Fully Paid</option>
           </select>
@@ -203,6 +206,7 @@ function Card(props) {
             <option value="Venture North">Venture North</option>
             <option value="Julia">Julia</option>
             <option value="Jason">Jason</option>
+            <option value="Jason and Julia">Jason and Julia</option>
           </select>
           <br></br>
           Status:
@@ -226,12 +230,12 @@ function Card(props) {
             <strong>{props.card.title}</strong>
           </div>
           <ul className="card-content">
-            <li>Update: {props.card.update_text}</li>
-            <li>Cost: ${props.card.cost_associated}</li>
-            <li>Due By Date: {props.card.due_date}</li>
-            <li>Category: {props.card.category}</li>
-            <li>Payment Status: {props.card.payment_status}</li>
-            <li>Owner: {props.card.owner}</li>
+            <li><em>Update:</em> {props.card.update_text}</li>
+            <li><em>Cost:</em> ${props.card.cost_associated}</li>
+            <li><em>Due By Date:</em> {props.card.due_date}</li>
+            <li><em>Category:</em> {props.card.category}</li>
+            <li><em>Payment Status:</em> {props.card.payment_status}</li>
+            <li><em>Owner:</em> {props.card.owner}</li>
           </ul>
           <div className="card-buttons">
             <button onClick={() => setIsEditing(true)}>Edit</button>
