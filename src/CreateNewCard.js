@@ -145,7 +145,6 @@ function CreateNewCard() {
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            defaultValue="hidden"
           >
             <option value="hidden" hidden>
               Select
@@ -176,7 +175,6 @@ function CreateNewCard() {
           <select
             value={paymentStatus}
             onChange={(e) => setPaymentStatus(e.target.value)}
-            defaultValue="Select"
           >
             <option value="hidden" hidden>
               Select
@@ -196,7 +194,6 @@ function CreateNewCard() {
           <select
             value={owner}
             onChange={(e) => setOwner(e.target.value)}
-            defaultValue="Select"
           >
             <option value="hidden" hidden>
               Select
@@ -217,7 +214,6 @@ function CreateNewCard() {
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            defaultValue="Select"
           >
             <option value="hidden" hidden>
               Select

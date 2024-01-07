@@ -19,8 +19,6 @@ function App() {
   const [totalCost, setTotalCost] = useState(0);
   const [filterSearch, setFilterSearch] = useState("");
 
-  console.log(allCards)
-
   const cardContextValue = { allCards, setAllCards };
   const costContextValue = { totalCost, setTotalCost };
   const filterContextValue = { filterSearch };
@@ -49,7 +47,6 @@ function App() {
 
   const handleFilter = (e) => {
       setFilterSearch(e.target.value)
-      console.log("Filter Activated!")  
   }
   
   return (
