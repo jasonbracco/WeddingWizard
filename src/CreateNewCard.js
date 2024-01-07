@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useContext } from "react";
-import { CardContext } from './App';
+import { CardContext, CostContext } from './App';
 
 function CreateNewCard() {
   const [cardTitle, setCardTitle] = useState("");
@@ -17,6 +17,8 @@ function CreateNewCard() {
   const [statusError, setStatusError] = useState(false)
 
   const { allCards, setAllCards } = useContext(CardContext);
+  const { totalCost, setTotalCost } = useContext(CostContext);
+
 
   const createNewCardSubmit = async (event) => {
     event.preventDefault();
@@ -65,7 +67,31 @@ function CreateNewCard() {
           setPaymentStatus("hidden");
           setOwner("hidden");
           setStatus("hidden");
-          setAllCards([...allCards, newCard])
+          try {
+            const allCardsResponse = await fetch("/getallcards");
+            if (allCardsResponse.ok) {
+              const updatedCards = await allCardsResponse.json();
+              setAllCards(updatedCards);
+              const numericCost = updatedCards
+                .map((card) => parseFloat(card.cost_associated))
+                .reduce(
+                  (accumulator, currentValue) => accumulator + currentValue
+                );
+              setTotalCost(
+                numericCost.toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                })
+              );
+            } else {
+              console.error(
+                "Failed fetching updated cards:",
+                allCardsResponse.statusText
+              );
+            }
+          } catch (error) {
+            console.error("Error fetching updated cards", error);
+          }
         } else {
           console.error("Failed to create card:", response.statusText);
         }
