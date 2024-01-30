@@ -36,7 +36,7 @@ Create a .env file in the server directory to store this information, as it will
 
 In your new database, create a table named "cards".  Use the following properties:
 
-Name: id | Type: | 
+Name: id | Type: serial | 
 Name: | Type: integer | Not NULL=true | Primary Key=true | Default: nextval sequential
 Name: title | Type: text | Not NULL=true |
 Name: update_text | Type: text | Not NULL=true 
