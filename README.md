@@ -24,8 +24,6 @@ To run the frontend locally, use npm start in the project directory and open loc
 
 To start the server, cd into the server directory and use npm run dev.  Nodemon is used in this project, so you will not need to restart the server every time you make a change to the back end.  If you like, you can still use node server.js in the server directory.
 
-When you start the server locally, the front end will not load unless you have connected a database to the project.
-
 Create your own PostgreSQL database and connect it to the program referencing the PostgreSQL documentation. As you can see in server.js, a new Pool is created using the following:
 
 DB_USER
@@ -35,6 +33,20 @@ DB_PASSWORD
 DB_PORT
 
 Create a .env file in the server directory to store this information, as it will be specific to your PostgreSQL account and table.
+
+In your new database, create a table named "cards".  Use the following properties:
+
+Name: id | Type: | 
+Name: | Type: integer | Not NULL=true | Primary Key=true | Default: nextval sequential
+Name: title | Type: text | Not NULL=true |
+Name: update_text | Type: text | Not NULL=true 
+Name: cost_associated| Type: numeric | Length/Precision: 10 | Scale: 2 | Not NULL=true 
+Name: due_date | Type: date | Not NULL=true |
+Name: category | Type: text | Not NULL=true |
+Name: payment_status | Type: text | Not NULL=true 
+Name: owner | Type: text | Not NULL=true 
+Name: status | Type: text | Not NULL=true 
+
 
 React Provided Guidelines:
 
